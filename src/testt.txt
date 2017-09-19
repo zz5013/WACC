@@ -1,0 +1,11 @@
+void writter(char *pf) { //printf("write begin\n");
+	FILE *fp = fopen(pf, "wb");
+	char obj[4 * (lineofout + 10)];
+	for (int i = 0; i < sourceline + extra; i++) {
+		for (int j = 0; j < 4; j++) {
+			obj[4 * i + j] = takeint(objectcode[i], 8 * j, 8);
+		}
+	}
+	fwrite(&obj, sizeof(obj[0]), 4 * (lineofout + extra), fp);
+	fclose(fp); //printf("write complete\n");
+}
